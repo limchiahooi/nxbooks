@@ -21,12 +21,15 @@
 
 
   <h2 class="text-center">Search Results</h2>
+  <div class="col-md-12">
+      Your search returned <%= @search.count %> result(s).
+        </div><br><br>
   
 
   <% if @search.blank? %>
     <div class="col-md-12">
       <div class="well">
-        <p>Your search did not match any documents.</p><br>
+        <p>Sorry, your search did not match any documents.</p><br>
         <p>Suggestions:</p><br>
         <ul>
           <li>Make sure all words are spelled correctly</li>
