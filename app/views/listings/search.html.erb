@@ -1,0 +1,81 @@
+<div class="container-fluid">
+
+<div class="well"><center>
+<%= form_tag search_path, method: "get" do %>
+<div style="overflow-x:auto;">
+<table>
+  <tr><td style="padding: 20px;"><%= label_tag("Search by Book Title") %>
+   <%= text_field_tag(:search, params[:search], class:"form-control") %></td><td style="padding: 15px;"><%= label_tag("Search by Author") %>
+   <%= text_field_tag(:author, params[:author], class:"form-control") %></td>
+  <td style="padding: 20px;"><%= label_tag("Search by Publisher") %>
+   <%= text_field_tag(:publisher, params[:publisher], class:"form-control") %></td><td style="padding: 20px;"><%= label_tag("Search by Review") %>
+   <%= text_field_tag(:review, params[:review], class:"form-control") %></td>
+   <td style="padding: 20px;"><%= submit_tag("Search", class:"btn btn-success")%>
+<% end %></td></tr>
+</table>
+
+</div></center>
+</div>
+
+
+
+
+  <h2 class="text-center">Search Results</h2>
+  
+
+  <% if @search.blank? %>
+    <div class="col-md-12">
+      <div class="well">
+        <p>Your search did not match any documents.</p><br>
+        <p>Suggestions:</p><br>
+        <ul>
+          <li>Make sure all words are spelled correctly</li>
+          <li>Try different keywords</li>
+          <li>Try more general keywords</li>
+          <li>Try fewer keywords</li>
+        </ul><br>
+        <p>Alternatively, you can browse all our reviews <%= link_to "here", listings_path %>. </p><br>
+      </div>
+    </div>
+
+
+
+  <% else %>
+
+
+<div class="col-md-12", align="right">
+      <%= will_paginate @search %>
+</div>
+
+  <div class="col-md-12">
+
+      <% @search.each_slice(4) do |listings| %>
+        <div class='row'>
+          <% listings.each do |listing| %>
+              <div class="col-md-3">
+              
+                <div class="well"><center>
+                  <% if listing.image? %>
+
+                  <p><%= image_tag listing.image[0].to_s, class: "img-responsive", style: "border-radius: 3px; " %></p>
+
+                  <% else %>
+                  <p><%= image_tag("http://placehold.it/360x480&text=no%20image", class: "img-responsive") %></p>
+                 <% end %>
+
+                  <h4><%= link_to listing.title, user_listing_path(listing.user, listing) %></h4>
+                    <p>Authors: <%= listing.author%></p></center>
+
+                 </div>
+               </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+  
+    
+  </div>
+<% end %>

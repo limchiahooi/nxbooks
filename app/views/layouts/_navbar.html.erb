@@ -39,9 +39,9 @@
       
 
 <div class="navbar-form navbar-left" role="search">
- <%= form_tag( method: "get", id: "search-form", enforce_utf8: false) do %>
+ <%= form_tag(search_path, method: "get", id: "search-form", enforce_utf8: false) do %>
         <div class="form-group">
-            <%= text_field_tag :search, params[:search], required: true, class: "form-control", placeholder: "Enter a location" %>
+            <%= text_field_tag :search, params[:search], required: true, class: "form-control", placeholder: "Enter a book title" %>
         </div>
             <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
         
@@ -59,7 +59,7 @@
       <li>
 
 
-<%= link_to "Create a new listing", "", Style: "color:white" %>
+<%= link_to "Create a new book review", "/listings/new", Style: "color:white", 'data-turbolinks' => false %>
 
 </li>
 <li>

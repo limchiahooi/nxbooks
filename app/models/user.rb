@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
 
   has_many :authentications, dependent: :destroy
+  has_many :listings, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 
   def self.create_with_auth_and_hash(authentication,auth_hash)

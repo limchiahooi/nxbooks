@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
 
   
-  root "static#index"
+  root "listings#index"
 
   resources :users do
   	resources :listings
   end
+
+
+  resources :listings do
+     resources :image, :only => [:create, :destroy] # support #create and #destroy
+  end
+
+  resources :listings do
+       resources :comments, only: [:create, :destroy]
+    end
 
 
 
@@ -14,6 +23,7 @@ Rails.application.routes.draw do
   delete "/sign_out" => "sessions#destroy"
   get    "/sign_up" => "users#new"
   get    "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  get    "/search" => "listings#search", as: "search"
 
 
 
