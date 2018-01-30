@@ -1,0 +1,35 @@
+
+<div class='container-fluid'>
+    <div class="well">
+        <h4><u>Kuala Lumpur 6 Days Weather Forecast</u></h4>
+            <% @weathers.each do |w| %>
+                <div style='width:180px; border: 1px solid; display: inline-block;text-align: center'>
+                    <p>Date:
+                        <%= w['applicable_date'] %>
+                    </p>
+                    <p>Weather:
+                        <%= w['weather_state_name'] %>
+                        <%= image_tag "https://www.metaweather.com/static/img/weather/#{w['weather_state_abbr']}.svg" %>
+                     </p>                     
+                </div>
+            <% end %><br><br>
+            <p>API provided by: <a href="https://www.metaweather.com/api">MetaWeather</a></p>
+    </div>
+
+    <div class="well">
+        <h4><u>Random Quote</u></h4>
+        <p style="font-size: 120%"><i>"<%= @quote %>"</i></p>
+        <p>By: <%= @author %></p>
+        <p>Category: <%= @cat %></p>
+        <p>API provided by: <a href="https://talaikis.com/">Tadas Talaikis</a></p>
+    </div>
+
+    <div class="well">
+        <h4><u>Random Joke</u></h4>
+        <p style="font-size: 120%"><i>"<%= @joke %>"</i></p>
+        
+        <p>API provided by: <a href="http://www.icndb.com/api/">ICNDb.com</a></p>
+    </div>
+
+
+</div>

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get    "/sign_up" => "users#new"
   get    "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get    "/search" => "listings#search", as: "search"
+  get    "/api" => "static#api"
 
 
 
