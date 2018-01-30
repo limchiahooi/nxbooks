@@ -1,0 +1,125 @@
+<div class='container-fluid' style="min-height: 100%">
+
+
+<div class="col-md-8 col-md-offset-2" >
+  <li class="list-group-item">
+    <h1>Edit your profile</h1>
+<br>
+<p>Fields marked with (*) are mandatory.</p>
+<br>
+  		<%= form_for @user, html: { multipart: true } do |form| %>
+    		
+
+<div class="text-field">
+
+<%= form.label :name, "Name* : ", style: "width: 120px" %>
+  <%= form.text_field :name, type: "name", required: true %>
+</div>
+<br>
+<div class="text-field">
+<%= form.label :email, "Email* : ", style: "width: 120px" %>
+  <%= form.text_field :email, type: "email", required: true %>
+
+</div>
+
+
+
+
+<br>
+<div class="text-field">
+<%= form.label :bio, "Biography: ", style: "width: 120px" %>
+  <%= form.text_area :bio, type: "bio" %>
+
+</div>
+
+
+<div class="text-field">
+  <% if form.object.avatar? %>
+
+<p><b>Your profile photo: </b></p>
+
+      <%= image_tag form.object.avatar.url, Style: "width: 200px; height: 200px;" %>
+      <%= form.label :remove_avatar, "Delete"  %>
+      <%= form.check_box :remove_avatar %> 
+    <% end %>
+
+    </div>
+
+<br><br>
+
+
+<div class="text-field">
+<%= form.label :avatar, "Upload profile photo (optional): " %>
+<p>You can only have ONE profile photo, any new upload will overwrite your existing profile photo.</p>
+  <%= form.file_field :avatar, id: "fileupload" %>
+</div>
+
+
+<br>
+
+<div id="dvPreview"></div>
+
+<br>
+
+
+
+
+
+
+        <br>
+
+
+
+   			 <div class="submit-field">
+         <div style="float: left;">
+     			 <%= form.submit "Save" %> <% end %></div>
+
+      <div><%= button_to "Cancel", @user, :method => :get, style: "margin-left: 10px" %>
+    		</div><br>
+
+
+  		
+  </li><br>
+    <div class="other-links">
+       <%= link_to '<< Back to Main page', root_path %>
+    </div><br>
+</div>
+
+</li>
+</div>
+</div>
+
+
+<script>
+
+ $(function () {
+    $("#fileupload").change(function () {
+        if (typeof (FileReader) != "undefined") {
+            var dvPreview = $("#dvPreview");
+            dvPreview.html("");
+            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+            $($(this)[0].files).each(function () {
+                var file = $(this);
+                if (regex.test(file[0].name.toLowerCase())) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = $("<img />");
+                        img.attr("style", "height:100px;width: 100px;margin:5px");
+                        img.attr("src", e.target.result);
+                        dvPreview.append(img);
+                    }
+                    reader.readAsDataURL(file[0]);
+                } else {
+                    alert(file[0].name + " is not a valid image file.");
+                    dvPreview.html("");
+                    return false;
+                }
+            });
+        } else {
+            alert("This browser does not support HTML5 FileReader.");
+        }
+    });
+});
+
+
+</script>

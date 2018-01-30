@@ -1,0 +1,104 @@
+<nav class="navbar navbar-default", style="color: #ffffff; background-color: #3b5998;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/" style="color: white"><b>Nxbooks</a></b>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Logo <span class="sr-only">(current)</span></a></li>
+        <li><a href="/" style="color: white">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white">My reservations <span class="caret"></span></a>
+          
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+
+
+    
+
+
+      
+
+<div class="navbar-form navbar-left" role="search">
+ <%= form_tag( method: "get", id: "search-form", enforce_utf8: false) do %>
+        <div class="form-group">
+            <%= text_field_tag :search, params[:search], required: true, class: "form-control", placeholder: "Enter a location" %>
+        </div>
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
+        
+<% end %>
+</div>
+
+
+
+      <ul class="nav navbar-nav navbar-right">
+<% if signed_in? %>
+      <li>
+      <%= link_to image_tag(current_user.avatar_url(:thumb).to_s, class: "img-responsive", style: "border-radius: 20px; padding: 0px;"), user_path(current_user), {:style=>"padding:3px;"} %> </li><li><%= link_to current_user.name, user_path(current_user), Style: "color:white" %></li>
+
+
+      <li>
+
+
+<%= link_to "Create a new listing", "", Style: "color:white" %>
+
+</li>
+<li>
+  
+<%= link_to "Sign out", sign_out_path, method: :delete, Style: "color:white"  %>
+</li>
+
+
+
+
+    <% else -%>
+    <li>
+      <%= link_to "Sign In", sign_in_path, Style: "color:white" %>
+    
+       </li>
+       <li><%= link_to "Sign in with Facebook", "/auth/facebook", Style: "color:white" %></li>
+
+
+       <li> <%= link_to "Register a new account", sign_up_path, Style: "color:white", 'data-turbolinks' => false %></li>
+        
+<% end -%>
+
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false", style="color:white" >Settings <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+ 
