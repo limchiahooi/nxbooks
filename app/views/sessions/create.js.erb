@@ -1,6 +1,6 @@
-<% @session.errors.each do |field, message| %>
-	<% @block =  '#' + field.to_s + '-block' %>
-	var block = '<%= @block %>'
-	$(block).html('<%= j (message)%>');
-    $(block).closest(".form-group").addClass("has-error");
-<% end %>
+<% @block =  '#error-field' %>
+var block = $('#error-field')
+block.show()
+$(block).html("Bad email or password.").css({"padding": "10px 30px 10px 15px", "border-radius": "8px"}).fadeOut(10000).click(function() {
+	$(this).hide();
+});

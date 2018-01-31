@@ -19,8 +19,14 @@ include SessionsHelper
 			flash[:success] = "Welcome to Nvbooks!"
 			redirect_to @user
 		else
-			flash[:warning] = @user.errors.full_messages.first
-			redirect_to new_user_url
+			# flash[:warning] = @user.errors.full_messages.first
+			# redirect_to new_user_url
+
+			respond_to do |format|
+		        format.html { redirect_to new_user_path}
+		        format.js { @user }
+			end
+
 		end
 	end
 	

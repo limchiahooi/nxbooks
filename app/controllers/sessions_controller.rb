@@ -11,8 +11,14 @@ include SessionsHelper
        redirect_to root_url
      else
     # If user's login doesn't work, send them back to the login form.
-       flash[:warning] = "Bad email or password."
-       redirect_to sign_in_url
+       # flash[:warning] = "Bad email or password."
+       # redirect_to sign_in_url
+
+       respond_to do |format|
+         format.html { redirect_to sign_in_url }
+         format.js 
+        end 
+
      end
   end
 

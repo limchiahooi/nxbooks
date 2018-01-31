@@ -4,7 +4,7 @@
 
 
 
-			<%= form_for @user, html: { multipart: true } do |form| %>
+			<%= form_for @user, html: { multipart: true }, remote: true do |form| %>
 			  <%= render partial: '/users/form', object: form  %>
  				 <div class="submit-field">
   					 <%= form.submit "Sign up",class: "btn btn-success" %>
