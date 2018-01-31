@@ -7,14 +7,20 @@ Rails.application.routes.draw do
   	resources :listings
   end
 
+  resources :users do
+    resources :comments
+  end
+
 
   resources :listings do
      resources :image, :only => [:create, :destroy] # support #create and #destroy
   end
 
   resources :listings do
-       resources :comments, only: [:create, :destroy]
+       resources :comments
     end
+
+  resources :comments
 
 
 

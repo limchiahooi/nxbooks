@@ -28,7 +28,10 @@ before_action :find_listing, only: [:show, :edit, :update, :destroy]
 	end
 	
 	def show
-		@comment = @listing.comments.new
+		@comments = @listing.comments.order(id: :desc)
+		@comment = Comment.new
+		render "listings/show"
+		
 	end
 		
 

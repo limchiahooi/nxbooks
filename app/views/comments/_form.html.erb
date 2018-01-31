@@ -1,0 +1,8 @@
+<%= form_for [@listing, @comment], remote: true, id: "new_comment"  do |form| %>
+<table>
+   <tr>
+      <td style="padding-right:20px; "><%= form.text_area :content, id: "link_input", placeholder: "Write a comment...", style: "float:left; width: 500px;border-radius: 10px;padding:10px" %></td>
+      <td><%= form.submit "Post!", class: "btn btn-success", style: "font-weight:900" %></td>
+   </tr>
+</table>
+<% end %>

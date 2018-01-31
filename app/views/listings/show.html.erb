@@ -15,16 +15,16 @@
 
 
          <br>
-         <p>Authors: <%= @listing.author %></p>
-         <p>Publisher: <%= @listing.publisher %></p>
-         <p>Review: <%= @listing.review %></p>
-         <p>Shared by: <%= link_to @listing.user.name, user_path(@listing.user) %></p>
+         <p><b>Author(s): </b><%= @listing.author %></p>
+         <p><b>Publisher: </b><%= @listing.publisher %></p>
+         <p><b>Review: </b><div class="well"><%= simple_format(@listing.review) %></div></p>
+         <p><b>Shared by: </b><%= link_to @listing.user.name, user_path(@listing.user) %></p>
          <br> 
-         <p>Photos: 
+         <p><b>Photos: </b>
             <% if @listing.image.present? %>
             There are <%= @listing.image.count %> photos for this review. 
          </p>
-         <div style="min-width: 25%; max-width: 360px">
+         <div style="height: 480px !important;">
             <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
                <!-- Indicators -->
                <ol class="carousel-indicators">
@@ -34,13 +34,13 @@
                   <% end %>
                </ol>
                <!-- Wrapper for slides -->
-               <div class="carousel-inner">
+               <div class="carousel-inner" style=" width:100%; height: 500px !important;">
                   <div class="item active">
-                     <%= image_tag @listing.image.first, class: "img-responsive center-block", style: "width:100%; height:100%;" %>
+                     <%= image_tag @listing.image.first, class: "img-responsive center-block", style: "" %>
                   </div>
                   <% @listing.image[1..-1].each do |image| %>
                   <div class="item">
-                     <%= image_tag image, class: "img-responsive center-block", style: "width:100%; height:100%;" %>
+                     <%= image_tag image, class: "img-responsive center-block", style: "" %>
                   </div>
                   <% end %>
                </div>
@@ -55,21 +55,85 @@
                </a>
             </div>
          </div>
-         <br><br>
+         <br>
          
          <% else %>
          There is no photo for this listing yet.</p>
          <% end %>
          <br>
-         <p><% if signed_in? %>
+
+
+         <% if signed_in? %>                    
             <% if current_user && ((current_user.id == @listing.user.id) || current_user.admin?) %>
-            <%= link_to 'Edit review', edit_user_listing_path(current_user, @listing), class: "btn btn-primary" %>
-         </p>
-         <p><%= link_to 'Delete review', user_listing_path(current_user, @listing), method: :delete, data: {confirm: 'Are you sure you want to delete this review?'}, class: "btn btn-primary" %>
-            <% end %>
-         </p>
+            <div class="submit-field">
+               <div style="float: left;margin-right: 15px;">
+                  <%= link_to 'Edit review', edit_user_listing_path(current_user, @listing), class: "btn btn-primary" %>
+               </div>
+         
+               <div><%= link_to 'Delete review', user_listing_path(current_user, @listing), method: :delete, data: {confirm: 'Are you sure you want to delete this review?'}, class: "btn btn-primary" %>
+               </div>
+            <% end %>         
          <% end %>
+
+         <hr>
+
+
+
+         <h3>Comments</h3>
+
+         <%= link_to "Write a comment", new_listing_comment_path(@listing), id: "new_link", remote: true, class: "btn btn-primary"  %>
+
+
+
+           
+            <br><br>
+
+
+<div class="table-responsive">
+<div id="link_table">
+<table class="table table-bordered" style="text-align: center;background-color: #f2f2f2;">
+<thead>   
+<tr>
+<td>Date</td>
+<td>Comment</td>
+<td>By</td>
+<td>Delete</td>
+</tr>
+</thead>
+
+<tbody>
+<% @comments.each do |comment| %>
+<tr id="delete_<%= comment.id %>">
+<td><%= comment.updated_at.localtime.to_date  %></td>
+<td><%= comment.content %></td>
+<td><%= link_to comment.user.name, user_path(comment.user)  %></td>
+<td><% if signed_in? %>                    
+            <% if current_user && ((current_user.id == comment.user_id) || current_user.admin?) %><%= link_to "Delete", comment, method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }, remote: true %><% end %><% end %></td>
+</tr><% end %>
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </li>
+
+
+
+
       <br>
       <div class="other-links">
          <%= link_to '<< Back to Main page', root_path %>
