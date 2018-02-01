@@ -78,7 +78,7 @@
          
 
          <h3>Comments</h3>
-         <% if @listing.comment? %>
+         
          <p>As at <%= Date.today.strftime("%d %B %Y") %>, this book review has <%= @listing.comment_count %> comments.</p>
 
 
@@ -118,9 +118,7 @@
 
 
 
-<% else %>
-        <p> There is no comment for this review yet.</p>
-         <% end %>
+
 
 
 
