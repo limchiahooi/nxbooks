@@ -17,7 +17,7 @@ include SessionsHelper
 			session[:user_id] = @user.id
 			sign_in(@user)
 			flash[:success] = "Welcome to Nvbooks!"
-			redirect_to @user
+			redirect_to root_url
 		else
 			# flash[:warning] = @user.errors.full_messages.first
 			# redirect_to new_user_url
