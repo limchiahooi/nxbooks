@@ -62,7 +62,12 @@ include SessionsHelper
 	private
 
 	def find_user
-		@user = User.find(params[:id])
+		if @user = User.find_by(id: params[:id])
+			return @user
+		else
+			flash[:warning] = "User does not exist."
+			redirect_to "/"
+		end
 	end
 
 	def user_params
