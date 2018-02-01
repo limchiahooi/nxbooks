@@ -5,8 +5,8 @@
       <div class="list-group">
          <div class="list-group-item">
             <h3><%= @user.name %></h3>            
-            <p>Bio: <%= @user.bio %>
-            <p>Profile photo: 
+            <p><%= @user.bio %>
+            <p>
                <% if @user.avatar.file.nil? %>
                No profile photo available.
             </p>
@@ -30,7 +30,7 @@
 
             <h3>My Book Reviews</h3>
 
-            <p>As at <%= Date.today.strftime("%d %B %Y") %>, you have created <%= @user.listing_count %> book reviews.</p>
+            <p>As at <%= Date.today.strftime("%d %B %Y") %>, there are <%= @user.listing_count %> book reviews.</p>
 
 
 
