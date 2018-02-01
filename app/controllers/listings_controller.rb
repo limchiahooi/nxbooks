@@ -5,7 +5,7 @@ include SessionsHelper
 before_action :find_listing, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@listings = Listing.all.order(id: :desc).paginate(:page => params[:page], :per_page => 4) 
+		@listings = Listing.all.order(id: :desc).paginate(:page => params[:page], :per_page => 8) 
 
 	end
 
