@@ -62,13 +62,13 @@
                 <div class="well"><center>
                   <% if listing.image? %>
 
-                  <p><%= image_tag listing.image[0].to_s, class: "img-responsive", style: "border-radius: 3px; " %></p>
+                  <p><%= link_to image_tag(listing.image[0].to_s, class: "img-responsive", style: "border-radius: 3px; "), listing_path(listing) %></p>
 
                   <% else %>
                   <p><%= image_tag("http://placehold.it/360x480&text=no%20image", class: "img-responsive") %></p>
                  <% end %>
 
-                  <h4><%= link_to listing.title, user_listing_path(listing.user, listing) %></h4>
+                  <h4><%= link_to listing.title, listing_path(listing) %></h4>
                     <p>Authors: <%= listing.author%></p></center>
 
                  </div>
