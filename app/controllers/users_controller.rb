@@ -71,7 +71,7 @@ include SessionsHelper
 	end
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :role, :avatar, :remove_avatar)
+		params.require(:user).permit(:name, :email, :password, :bio, :avatar, :remove_avatar)
 	end
 
 
