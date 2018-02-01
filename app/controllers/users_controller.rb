@@ -38,7 +38,7 @@ include SessionsHelper
 	def edit
 		if current_user.id != @user.id
 			flash[:warning] = "You are not allowed to edit this profile!"
-			redirect_to root_url			
+			redirect_to @user			
 		end			
 	end
 

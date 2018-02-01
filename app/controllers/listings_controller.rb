@@ -38,7 +38,7 @@ before_action :find_listing, only: [:show, :edit, :update, :destroy]
 	def edit
 		if current_user.id != @listing.user_id
 			flash[:warning] = "You are not allowed to edit this review!"
-			redirect_to root_url			
+			redirect_to @listing			
 		end			
 	end
 
