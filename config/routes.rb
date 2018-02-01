@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get    "/search" => "listings#search", as: "search"
   get    "/api" => "static#api"
 
-  map.connect '*path', :controller => 'static', :action => 'error'
+  match "*path" => redirect_to("/")
 
 
 
