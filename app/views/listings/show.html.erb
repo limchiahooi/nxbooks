@@ -120,6 +120,11 @@
 
 <% else %>
         <p> There is no comment for this review yet.</p>
+         <% if signed_in? %>
+
+               <%= link_to "Write a comment", new_listing_comment_path(@listing), id: "new_link", remote: true, class: "btn btn-primary"  %>           
+                  <br><br>
+                  <% end %>
          <% end %>
 
 
