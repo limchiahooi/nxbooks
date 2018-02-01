@@ -6,7 +6,7 @@
 
 
 
-				<%= form_for :session, url: sign_in_path, remote: true do |form| %>
+				<%= form_for :session, url: sign_in_path, html: { id: 'sign-in' }, remote: true do |form| %>
  					 <%= render partial: '/sessions/form', object: form %>
  				<% end %>
 

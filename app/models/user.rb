@@ -9,10 +9,9 @@ class User < ApplicationRecord
 
 
   validates :name, presence: true
-  validates :name, length: { minimum: 2 }
   validates :email, presence: true
   validates :email, uniqueness: true
-  validates :password, length: 6..20, on: :create
+  
 
 
   has_many :authentications, dependent: :destroy
