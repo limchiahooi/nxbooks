@@ -77,12 +77,7 @@ before_action :find_listing, only: [:show, :edit, :update, :destroy]
 	private
 
 	def find_listing
-		if @listing = Listing.find(params[:id])
-			return @listing
-		else
-			flash[:warning] = "Review does not exist."
-			redirect_to "/"
-		end
+		@listing = Listing.find(params[:id])
 	end
 
 	def listing_params
