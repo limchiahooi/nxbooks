@@ -42,7 +42,7 @@
                <h4><%= link_to listing.title, listing_path(listing) %></h4>
 
                   <p> <% if listing.image? %>
-                        <%= image_tag listing.image[0].to_s, class: "img-responsive", style: "border-radius: 3px; " %><% else %><p><%= image_tag("http://placehold.it/360x480&text=no%20image", class: "img-responsive") %><% end %></p>
+                        <%= link_to image_tag(listing.image[0].to_s, class: "img-responsive", style: "border-radius: 3px; "), listing_path(listing) %><% else %><p><%= image_tag("http://placehold.it/360x480&text=no%20image", class: "img-responsive") %><% end %></p>
 
                   
                   <p>Authors: <%= listing.author%></p>
