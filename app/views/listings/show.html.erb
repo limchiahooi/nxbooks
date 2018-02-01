@@ -6,11 +6,7 @@
          <h1><%= @listing.title %></h1>
          <br>
 
-         <% if false %>
-          <div class="well", style="float: right; max-width: 350px;">
-            <%= render "reservations/form" %>           
-            </div>
-            <% end %>
+        
 
 
 
@@ -58,7 +54,7 @@
          <br>
          
          <% else %>
-         There is no photo for this listing yet.</p>
+         There is no photo for this review yet.</p>
          <% end %>
          <br>
 
@@ -82,18 +78,15 @@
          
 
          <h3>Comments</h3>
+         <% if @listing.comment.present? %>
          <p>As at <%= Date.today.strftime("%d %B %Y") %>, this book review has <%= @listing.comment_count %> comments.</p>
 
 
-         <% if signed_in? %>
+               <% if signed_in? %>
 
-         <%= link_to "Write a comment", new_listing_comment_path(@listing), id: "new_link", remote: true, class: "btn btn-primary"  %>
-
-
-
-           
-            <br><br>
-            <% end %>
+               <%= link_to "Write a comment", new_listing_comment_path(@listing), id: "new_link", remote: true, class: "btn btn-primary"  %>           
+                  <br><br>
+                  <% end %>
 
 
 <div class="table-responsive">
@@ -123,7 +116,9 @@
 
 
 
-
+<% else %>
+         There is no comment for this review yet.</p>
+         <% end %>
 
 
 
