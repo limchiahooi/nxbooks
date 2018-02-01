@@ -27,19 +27,21 @@
   
 
   <% if @search.blank? %>
-    <div class="col-md-12">
-      <div class="well">
-        <p>Sorry, your search did not match any documents.</p><br>
-        <p>Suggestions:</p><br>
-        <ul>
-          <li>Make sure all words are spelled correctly</li>
-          <li>Try different keywords</li>
-          <li>Try more general keywords</li>
-          <li>Try fewer keywords</li>
-        </ul><br>
-        <p>Alternatively, you can browse all our reviews <%= link_to "here", listings_path %>. </p><br>
-      </div>
-    </div>
+    
+      
+        <div class="well">
+          <p>Sorry, your search did not match any documents.</p><br>
+          <p>Suggestions:</p><br>
+          <ul>
+            <li>Make sure all words are spelled correctly</li>
+            <li>Try different keywords</li>
+            <li>Try more general keywords</li>
+            <li>Try fewer keywords</li>
+          </ul><br>
+          <p>Alternatively, you can browse all our reviews <%= link_to "here", listings_path %>. </p><br>
+        </div>
+     
+    
 
 
 

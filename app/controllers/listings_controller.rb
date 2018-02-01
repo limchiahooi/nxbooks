@@ -11,8 +11,13 @@ before_action :find_listing, only: [:show, :edit, :update, :destroy]
 
 
 	def new
-		@listing = Listing.new
-		render "listings/new"
+		if signed_in?
+			@listing = Listing.new
+			render "listings/new"
+		else
+			flash[:warning] = "You need to sign in first!"
+			redirect_to root_url
+		end
 	end
 
 
@@ -36,9 +41,12 @@ before_action :find_listing, only: [:show, :edit, :update, :destroy]
 		
 
 	def edit
-		if current_user.id != @listing.user_id
+		if signed_in? && current_user.id != @listing.user_id
 			flash[:warning] = "You are not allowed to edit this review!"
-			redirect_to @listing			
+			redirect_to @listing
+		elsif !signed_in?
+			flash[:warning] = "You need to sign in first!"
+			redirect_to @listing
 		end			
 	end
 
