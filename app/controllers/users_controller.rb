@@ -31,6 +31,7 @@ include SessionsHelper
 	end
 	
 	def show
+		@listings = Listing.where(user_id: @user).order(id: :desc) 
 	end
 		
 

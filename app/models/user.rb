@@ -20,9 +20,18 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
 
+  def listing_count
+    @count = self.listings.count
+  end
+
+
+
+
+
   def self.create_with_auth_and_hash(authentication,auth_hash)
       user = self.create! do |u|
       	u.name = auth_hash["extra"]["raw_info"]["name"]
+        # u.remote_avatar_url = auth_hash["info"]["image"]
       	u.password = SecureRandom.hex(10)
         u.email = auth_hash["extra"]["raw_info"]["email"] || "#{SecureRandom.hex(8)}@facebnb.com"
       end

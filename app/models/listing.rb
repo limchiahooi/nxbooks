@@ -12,6 +12,10 @@ class Listing < ApplicationRecord
 
 
 
+	def comment_count
+    @count = self.comments.count
+  end
+
 
 
 
