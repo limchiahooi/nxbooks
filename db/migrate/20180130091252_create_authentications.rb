@@ -5,7 +5,6 @@ class CreateAuthentications < ActiveRecord::Migration[5.1]
       t.string :token
       t.string :provider
       t.references :user, foreign_key: true
-
       t.timestamps
     end
   end

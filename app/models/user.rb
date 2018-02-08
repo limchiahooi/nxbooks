@@ -13,7 +13,6 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   
 
-
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -22,8 +21,6 @@ class User < ApplicationRecord
   def listing_count
     @count = self.listings.count
   end
-
-
 
 
 

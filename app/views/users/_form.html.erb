@@ -2,58 +2,42 @@
 <br>
 
 
-<div class="text-field">
- 
-  <%= form.label :name, "Name: ", style: "width: 80px" %>
-
-
-
-  <%= form.text_field :name, type: 'name', placeholder: "Your name" %>
+<div class="text-field"> 
+    <%= form.label :name, "Name: ", style: "width: 80px" %>
+    <%= form.text_field :name, type: 'name', placeholder: "Your name" %>
 </div>
 
 <br>
 
-<div class="text-field">
- 
-  <%= form.label :email, "Email: ", style: "width: 80px" %>
-
-
-
-  <%= form.text_field :email, type: 'email', placeholder: "Email address" %>
+<div class="text-field"> 
+    <%= form.label :email, "Email: ", style: "width: 80px" %>
+    <%= form.text_field :email, type: 'email', placeholder: "Email address" %>
 </div>
 
-
-
-
 <br>
-
 
 <div class="password-field">
 
 
-  <%= form.label :password, "Password: ", style: "width: 80px" %>
-
-
-
-  <%= form.password_field :password, placeholder: "Create a password" %>
+    <%= form.label :password, "Password: ", style: "width: 80px" %>
+    <%= form.password_field :password, placeholder: "Create a password" %>
 </div>
 
-<br><br>
+<br>
+<br>
 
+<div class="text-field">
+    <center>
+        <%= form.label :avatar, "Upload profile photo (optional): " %><br><br>
+        <%= form.file_field :avatar, id: "avatar-upload" %>
+    </center>
+</div>
 
-<div class="text-field"><center>
-<%= form.label :avatar, "Upload profile photo (optional): " %><br><br>
-  <%= form.file_field :avatar, id: "avatar-upload" %>
-</center></div>
 <br>
 
 <div class="form-group">
-  <img id="img_prev" width=100 height=100 src="#" alt="your image" class="img-thumbnail hidden"/> <br/>
+    <img id="img_prev" width=100 height=100 src="#" alt="your image" class="img-thumbnail hidden"/> <br/>
 </div>
-
-
-
-
 
 
 

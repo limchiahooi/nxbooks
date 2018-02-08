@@ -1,151 +1,106 @@
 <div class='container-fluid' style="min-height: 100%">
 
-<div class="col-md-12">
-  <li class="list-group-item">
-    <h1>Edit your review</h1>
-<br>
-  		<%= form_for @listing do |form| %>
-    	  
+    <div class="col-md-12">
+        <li class="list-group-item">
+            <h1>Edit your review</h1>
+            <br>
+            <%= form_for @listing do |form| %>
 
+                <div class="text-field">
+                    <%= form.label :title, "Title: ", style: "width: 120px" %>
+                        <%= form.text_field :title %>
+                </div>
+                <br>
+                <div class="text-field">
+                    <%= form.label :author, "Authors: ", style: "width: 120px" %>
+                        <%= form.text_field :author %>
+                </div>
+                <br>
+                <div class="text-field">
+                    <%= form.label :publisher, "Publisher: ", style: "width: 120px" %>
+                        <%= form.text_field :publisher %>
+                </div>
+                <br>
+                <div class="text-field">
+                    <%= form.label :review, "Review: ", style: "width: 120px" %>
+                        <%= form.text_area :review, style: "width: 500px;height:200px;" %>
+                </div>
+                <br>
+                <br>
+                <div class="submit-field">
+                    <div style="float: left;">
+                        <%= form.submit "Save" %>
+                            <% end %>
+                    </div>
+                    <div>
+                        <%= button_to "Cancel", :back, :method => :get, style: "margin-left: 10px" %>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="text-field">
+                        <% if @listing.image.present? %>
+                            <h3><b>Delete photos: </b></h3>
+                            <% @listing.image.each_with_index do |img, index| %>
+                                <%= image_tag(img.thumb.url) %>
+                                <%= link_to "Delete", listing_image_path(@listing, index), :method => :delete, data: { confirm: "Are you sure you want to delete this photo?" } %>
+                                <br><br>
+                            <% end %>
+                        <% end %>
+                    </div>
 
+                    <br>
+                    <h3> Add more photos</h3>
 
-<div class="text-field">
-<%= form.label :title, "Title: ", style: "width: 120px" %>
-  <%= form.text_field :title %>
-</div>
+                    <%= form_for @listing, url: listing_image_index_path(@listing), method: :post do |form| %>
+                        <%= form.file_field :image, multiple: true, id: "fileupload" %><br>
+                        <%= form.submit "Add more photos" %>
+                    <% end %>
+                    <br>
+                    <div id="dvPreview"></div>
+                    <br>
 
+                </div>
 
-<br>
+        </li>
 
+        <br>
+        <div class="other-links">
+            <%= link_to '<< Back to Main page', root_path %>
+        </div>
+        <br>
 
-<div class="text-field">
-<%= form.label :author, "Authors: ", style: "width: 120px" %>
-  <%= form.text_field :author %>
-</div>
-
-
-<br>
-
-
-<div class="text-field">
-<%= form.label :publisher, "Publisher: ", style: "width: 120px" %>
-  <%= form.text_field :publisher %>
-</div>
-
-
-<br>
-
-
-<div class="text-field">
-<%= form.label :review, "Review: ", style: "width: 120px" %>
-  <%= form.text_area :review, style: "width: 500px;height:200px;" %>
-</div>
-
-
-<br>
-
-
-
-<br>
-
-
-         <div class="submit-field">
-         <div style="float: left;">
-           <%= form.submit "Save" %> <% end %></div>
-
-      <div><%= button_to "Cancel", :back, :method => :get, style: "margin-left: 10px" %>
-        </div>    
-<br>
-
-
-
-<hr>
-<br>
-
-
-<div class="text-field">
-  <% if @listing.image.present? %>
-
-<h3><b>Delete photos: </b></h3>
-
-
-<% @listing.image.each_with_index do |img, index| %>
-
-      <%= image_tag(img.thumb.url) %>
-      <%= link_to "Delete", listing_image_path(@listing, index), :method => :delete, data: { confirm: "Are you sure you want to delete this photo?" } %>
-      
-      <br><br>
-
-<% end %>
-
-
-<% end %>
-
-</div>
-
-
-<br>
-<h3> Add more photos</h3>
-
-<%= form_for @listing, url: listing_image_index_path(@listing), method: :post do |form| %>
-  <%= form.file_field :image, multiple: true, id: "fileupload" %><br>
-  <%= form.submit "Add more photos" %>
-  <% end %>
-
-
-<br>
-<div id="dvPreview"></div>
-
-<br>
-
-</div>
-
-
-
-
-
-</li>
-
-<br>
-<div class="other-links">
-       <%= link_to '<< Back to Main page', root_path %> 
     </div>
-<br>
-
-</div>
 
 </div>
 
 <script>
-
- $(function () {
-    $("#fileupload").change(function () {
-        if (typeof (FileReader) != "undefined") {
-            var dvPreview = $("#dvPreview");
-            dvPreview.html("");
-            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
-            $($(this)[0].files).each(function () {
-                var file = $(this);
-                if (regex.test(file[0].name.toLowerCase())) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var img = $("<img />");
-                        img.attr("style", "height:100px;width: 100px;margin:5px");
-                        img.attr("src", e.target.result);
-                        dvPreview.append(img);
+    $(function() {
+        $("#fileupload").change(function() {
+            if (typeof(FileReader) != "undefined") {
+                var dvPreview = $("#dvPreview");
+                dvPreview.html("");
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                $($(this)[0].files).each(function() {
+                    var file = $(this);
+                    if (regex.test(file[0].name.toLowerCase())) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var img = $("<img />");
+                            img.attr("style", "height:100px;width: 100px;margin:5px");
+                            img.attr("src", e.target.result);
+                            dvPreview.append(img);
+                        }
+                        reader.readAsDataURL(file[0]);
+                    } else {
+                        alert(file[0].name + " is not a valid image file.");
+                        dvPreview.html("");
+                        return false;
                     }
-                    reader.readAsDataURL(file[0]);
-                } else {
-                    alert(file[0].name + " is not a valid image file.");
-                    dvPreview.html("");
-                    return false;
-                }
-            });
-        } else {
-            alert("This browser does not support HTML5 FileReader.");
-        }
+                });
+            } else {
+                alert("This browser does not support HTML5 FileReader.");
+            }
+        });
     });
-});
-
-
 </script>

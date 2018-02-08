@@ -1,39 +1,36 @@
 <div class='container-fluid' style="min-height: 100%">
 
-  <div class="col-md-12">
-  <li class="list-group-item">
-  <h2>Create a new book review</h2>
-<br>
-  <%= form_for @listing, html: { multipart: true } do |form| %>
-    <%= render partial: '/listings/form', object: form %>
-    <br>
+    <div class="col-md-12">
+        <li class="list-group-item">
+            <h2>Create a new book review</h2>
+            <br>
+            <%= form_for @listing, html: { multipart: true } do |form| %>
+                <%= render partial: '/listings/form', object: form %>
+                    <br>
 
+                    <div class="submit-field">
+                        <div style="float: left">
 
+                            <%= form.submit "Create" %>
+            <% end %>
+                        </div>
 
-    <div class="submit-field">
-<div style="float: left">
-    
-      <%= form.submit "Create" %> <% end %></div>
+                        <div>
+                            <%= button_to "Cancel", :back, :method => :get, style: "margin-left: 10px" %>
+                        </div>
+                        <br>
 
-      <div>
-      <%= button_to "Cancel", :back, :method => :get, style: "margin-left: 10px" %></div>    
-<br>
-    
-</div>
+                    </div>
 
+        </li>
 
+        <br>
+        <div class="other-links">
+            <%= link_to '<< Back to Main page', root_path %>
+        </div>
+        <br>
 
-
-
-</li>
-
-<br>
-<div class="other-links">
-       <%= link_to '<< Back to Main page', root_path %> 
     </div>
-<br>
-
-</div>
 
 
 </div>

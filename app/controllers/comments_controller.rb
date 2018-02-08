@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
-include SessionsHelper
+	
+	include SessionsHelper
 
-before_action :find_comment, only: [:show, :edit, :update, :destroy]
+	before_action :find_comment, only: [:show, :edit, :update, :destroy]
 
 
 	def index

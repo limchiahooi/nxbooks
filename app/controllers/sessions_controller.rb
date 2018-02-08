@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
-include SessionsHelper
+  
+  include SessionsHelper
 
- def create
+  def create
      @user = User.find_by(email: params[:session][:email]) 
 
      if @user && @user.try(:authenticate, params[:session][:password]) 
@@ -21,7 +22,6 @@ include SessionsHelper
 
      end
   end
-
 
 
 
@@ -49,10 +49,6 @@ include SessionsHelper
     end
 
 
-
-
-
-
     def destroy
 	    if signed_in?
 	      session[:user_id] = nil
@@ -60,16 +56,6 @@ include SessionsHelper
 	      redirect_to root_url
 	    end 
   end
-
-
-
-
-
-
-
-
-
-
 
 
 end

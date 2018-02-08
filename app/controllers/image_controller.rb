@@ -1,6 +1,5 @@
 class ImageController < ApplicationController
 
-
 	before_action :find_listing
 
   def create

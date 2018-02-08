@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Nxbooks - online community for book lovers</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-  </head>
-
-  <body>
-
-
-  <%= render partial: 'layouts/navbar' %>
-
-
-  <% flash.each do |key, value| %>
-	  <div style="width: 98%; margin: 0 auto">
-     	 <div class="alert alert-<%= key %> alert-dismissable fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <%= value %>
-      	 </div>
-      </div>
-  <% end %>
-
-
-    <%= yield %>
-    <%= render partial: 'layouts/footer' %>
-    
-  </body>
+    <head>
+        <title>Nxbooks - online community for book lovers</title>
+        <%= csrf_meta_tags %>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <%= render partial: 'layouts/navbar' %>
+        <% flash.each do |key, value| %>
+        <div style="width: 98%; margin: 0 auto">
+            <div class="alert alert-<%= key %> alert-dismissable fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <%= value %>
+            </div>
+        </div>
+        <% end %>
+        <%= yield %>
+        <%= render partial: 'layouts/footer' %>
+    </body>
 </html>
+

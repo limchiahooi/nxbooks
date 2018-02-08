@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-include SessionsHelper
-
-
+	
+	include SessionsHelper
 
 	before_action :find_user, only: [:show, :edit, :update]
 
@@ -36,10 +35,13 @@ include SessionsHelper
 		
 
 	def edit
-		if current_user.id != @user.id
+		if signed_in? && !current_user.admin? && (current_user.id != @user.id)
 			flash[:warning] = "You are not allowed to edit this profile!"
-			redirect_to @user			
-		end			
+			redirect_to @user
+		elsif !signed_in?
+			flash[:warning] = "You need to sign in first!"
+			redirect_to @user
+		end		
 	end
 
 	def update
@@ -52,11 +54,7 @@ include SessionsHelper
 		end
 
 	end
-
-
-
 	
-
 	
 
 	private
@@ -73,9 +71,6 @@ include SessionsHelper
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :bio, :avatar, :remove_avatar)
 	end
-
-
-
 
 
 

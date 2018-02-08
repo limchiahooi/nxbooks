@@ -1,8 +1,8 @@
 class ListingsController < ApplicationController
-include SessionsHelper
+	
+	include SessionsHelper
 
-
-before_action :find_listing, only: [:show, :edit, :update, :destroy]
+	before_action :find_listing, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@listings = Listing.all.order(id: :desc).paginate(:page => params[:page], :per_page => 8) 
@@ -41,7 +41,7 @@ before_action :find_listing, only: [:show, :edit, :update, :destroy]
 		
 
 	def edit
-		if signed_in? && current_user.id != @listing.user_id
+		if signed_in? && !current_user.admin? && (current_user.id != @listing.user_id)
 			flash[:warning] = "You are not allowed to edit this review!"
 			redirect_to @listing
 		elsif !signed_in?
@@ -75,9 +75,6 @@ before_action :find_listing, only: [:show, :edit, :update, :destroy]
 	    @search = @search.where(["publisher ilike ?","%#{params[:publisher]}%"]).order(id: :desc).paginate(:page => params[:page], :per_page => 4)  if params[:publisher].present?
 		@search = @search.where(["review ilike ?","%#{params[:review]}%"]).order(id: :desc).paginate(:page => params[:page], :per_page => 4)  if params[:review].present?
 	end
-
-
-
 	
 
 	
@@ -96,10 +93,6 @@ before_action :find_listing, only: [:show, :edit, :update, :destroy]
 	def listing_params
 		params.require(:listing).permit(:title, :author, :publisher, :review, {image: []}, :remove_image)
 	end
-
-
-
-
 
 
 

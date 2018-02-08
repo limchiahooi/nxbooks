@@ -1,5 +1,3 @@
-
-
 <div class='container-fluid' style="min-height: 100%">
    <div class="col-md-8 col-md-offset-2" >
       <div class="list-group">
@@ -19,7 +17,7 @@
             
             <p><% if signed_in? %>
                <% if current_user && ((current_user.id == @user.id) || current_user.admin?) %>
-               <%= link_to 'Edit profile', edit_user_path(current_user), class: "btn btn-primary", 'data-turbolinks' => false %>
+               <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-primary", 'data-turbolinks' => false %>
             </p>
                <% end %>
             </p>
@@ -36,21 +34,19 @@
 
 
    
-         <% @listings.each do |listing| %>
-            <div class="well"><center>
-            
-               <h4><%= link_to listing.title, listing_path(listing) %></h4>
+            <% @listings.each do |listing| %>
+               <div class="well">
+                  <center>
+               
+                     <h4><%= link_to listing.title, listing_path(listing) %></h4>
 
-                  <p> <% if listing.image? %>
-                        <%= link_to image_tag(listing.image[0].to_s, class: "img-responsive", style: "border-radius: 3px; "), listing_path(listing) %><% else %><p><%= image_tag("http://placehold.it/360x480&text=no%20image", class: "img-responsive") %><% end %></p>
-
-                  
-                  <p>Authors: <%= listing.author%></p>
-                  </center></div>
-         <% end %>
-
-
-
+                        <p> <% if listing.image? %>
+                              <%= link_to image_tag(listing.image[0].to_s, class: "img-responsive", style: "border-radius: 3px; "), listing_path(listing) %><% else %><p><%= image_tag("http://placehold.it/360x480&text=no%20image", class: "img-responsive") %><% end %></p>
+                        
+                        <p>Authors: <%= listing.author%></p>
+                  </center>
+               </div>
+            <% end %>
 
 
          </div>
@@ -58,9 +54,9 @@
 
       </div>
 
-
       <div class="other-links">
-             <%= link_to '<< Back to Main page', root_path %>
+            <%= link_to '<< Back to Main page', root_path %>
       </div>
+
    </div>
 </div>
